@@ -1,25 +1,35 @@
-import About from "@/components/home/About";
-import Blog from "@/components/home/Blog";
+'use client'
+
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
+
 import Contact from "@/components/home/Contact";
 import Footer from "@/components/home/Footer";
 import Gallery from "@/components/home/Gallery";
-import Header from "@/components/home/Header"
-import Resume from "@/components/home/Resume";
-import Skill from "@/components/home/Skill";
+import Skill from "@/components/home/skills/Skills";
+import Header from "@/components/home/Header";
+import Hero from "@/components/home/Hero";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+const [About, Resume, Blog] = [
+  dynamic(() => import("@/components/home/About"), { ssr: false }),
+  dynamic(() => import("@/components/home/Resume"), { ssr: false }),
+  dynamic(() => import("@/components/home/Blog"), { ssr: false })
+];
 
 export default function Home() {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <>
       <i className="bi bi-list mobile-nav-toggle d-xl-none"></i>
       
       <Header />
-
-      <section id="hero" className="d-flex flex-column justify-content-center align-items-center">
-        <div className="hero-container" data-aos="fade-in">
-          <h1 style={{ fontSize: "2.5rem" }}>Nova Ardiansyah</h1>
-          <p style={{ fontSize: "1rem" }}>I'm <span className="typed" data-typed-items="Web Developer, Mobile App Developer, Problem Solver, Business Analyst, Technology Enthusiast"></span></p>
-        </div>
-      </section>
+      <Hero />
 
       <main id="main">
         <About />

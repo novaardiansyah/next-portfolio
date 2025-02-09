@@ -1,11 +1,6 @@
 import React from 'react'
 
 function Resume() {
-  // <?php 
-  //         $_btn_contact = "Hi Nova, I would like to connect with you soon, please get back to me as soon as possible!";
-  //         $btn_contact = str_replace(' ', '%20', urlencode($_btn_contact));
-  //       ?>
-
   let btn_contact = "Hi Nova, I would like to connect with you soon, please get back to me as soon as possible!";
   btn_contact = 'https://wa.me/6289506668480?text=' + btn_contact.replace(/ /g, '%20');
 

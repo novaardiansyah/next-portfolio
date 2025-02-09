@@ -30,15 +30,13 @@ function Contact() {
                 <h4>Phone:</h4>
                 <p>(+62) 895 0666 8480</p>
               </div>
-              {/* style="border:0; width: 100%; min-height: 350px;" */}
+              
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.1402103273913!2d106.64711587326333!3d-6.2452467611483105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fbe305fd83c3%3A0x2b95e8d6d18aca25!2sBundaran%20Alam%20Sutera!5e0!3m2!1sid!2sid!4v1691053130612!5m2!1sid!2sid" frameBorder={0} style={{ border: 0, width: '100%', minHeight: 350 }} allowFullScreen></iframe>
             </div>
           </div>
 
           <div className="col-lg-7 mt-4 mt-lg-0 d-flex align-items-stretch">
-            <form action="{{ route('sendMessage') }}" method="post" role="form" className="php-email-form" id="formContactUs">
-              @csrf
-
+            <form action="" method="post" role="form" className="php-email-form" id="formContactUs">
               <div className="row">
                 <div className="form-group col-md-6">
                   <label htmlFor="name">Your Name</label>
@@ -62,26 +60,6 @@ function Contact() {
                 <label htmlFor="message">Message</label>
                 <textarea className="form-control" name="message" id="message" rows={10} defaultValue={hasAutoForm ? 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, suscipit.' : ''}></textarea>
                 <div className="invalid-feedback message"></div>
-              </div>
-
-              <div className="form-group row">
-                <div className="col-md-12">
-                  <label htmlFor="captcha">Captcha</label>
-                </div>
-
-                {/* <div className="col-md-5 text-md-end">
-                  <div className="captcha">
-                    <span>{!! captcha_get_html() !!}</span>
-                    <button type="button" className="btn btn-danger" className="reload" onclick="return reloadCaptcha(event)" data-url="{{ route('reloadCaptcha') }}">
-                      &#x21bb;
-                    </button>
-                  </div>
-                </div> */}
-
-                <div className="col-md">
-                  <input type="text" className="form-control" placeholder="Enter Captcha" name="captcha" id="captcha" />
-                  <div className="invalid-feedback captcha"></div>
-                </div>
               </div>
 
               <div className="my-3">

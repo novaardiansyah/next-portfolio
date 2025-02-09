@@ -26,8 +26,8 @@ function Gallery() {
 
         <div className="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
           <div className="col-lg-4 col-md-6 portfolio-item tag_*">
-            <div className="portfolio-wrap">
-              <Image src="/img/gallery/01J3W32ZGNWGJ77581AKEY0BVY.png" alt="01J3W32ZGNWGJ77581AKEY0BVY.png" width={300} height={300} />
+            <div className="portfolio-wrap" style={{ position: 'relative', width: '100%', height: '100vh' }}>
+              <Image src="/img/gallery/01J3W32ZGNWGJ77581AKEY0BVY.png" alt="01J3W32ZGNWGJ77581AKEY0BVY.png" fill className="object-cover" />
               <div className="portfolio-links">
                 <a href="#" title="More Details" style={{ width: '100%' }} target="_blank" onClick={handleClick}>
                   <i className="bx bx-link"></i>

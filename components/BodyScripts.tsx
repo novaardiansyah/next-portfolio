@@ -11,7 +11,6 @@ export default function BodyScripts() {
       <Script src="/plugins/isotope-layout/isotope.pkgd.min.js" strategy="lazyOnload" />
       <Script src="/plugins/swiper/swiper-bundle.min.js" strategy="lazyOnload" />
       <Script src="/plugins/typed.js/typed.umd.js" strategy="lazyOnload" />
-      <Script src="/plugins/waypoints/noframework.waypoints.js" strategy="lazyOnload" />
       
       {/* Custom JS */}
       <Script src="/js/main/index.js?v=1.1" strategy="lazyOnload" />
