@@ -142,22 +142,6 @@
     });
   }
 
-  /**
-   * Skills animation
-   */
-  // let skilsContent = select('.skills-content');
-  // if (skilsContent) {
-  //   new Waypoint({
-  //     element: skilsContent,
-  //     offset: '80%',
-  //     handler: function(direction) {
-  //       let progress = select('.progress .progress-bar', true);
-  //       progress.forEach((el) => {
-  //         el.style.width = el.getAttribute('aria-valuenow') + '%'
-  //       });
-  //     }
-  //   })
-  // }
 
   /**
    * Porfolio isotope and filter
@@ -189,76 +173,7 @@
 
   });
 
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
-
-  /**
-   * Portfolio details slider
-   */
-  // new Swiper('.portfolio-details-slider', {
-  //   speed: 400,
-  //   loop: true,
-  //   autoplay: {
-  //     delay: 5000,
-  //     disableOnInteraction: false
-  //   },
-  //   pagination: {
-  //     el: '.swiper-pagination',
-  //     type: 'bullets',
-  //     clickable: true
-  //   }
-  // });
-
-  /**
-   * Testimonials slider
-   */
-  // new Swiper('.testimonials-slider', {
-  //   speed: 600,
-  //   loop: true,
-  //   autoplay: {
-  //     delay: 5000,
-  //     disableOnInteraction: false
-  //   },
-  //   slidesPerView: 'auto',
-  //   pagination: {
-  //     el: '.swiper-pagination',
-  //     type: 'bullets',
-  //     clickable: true
-  //   },
-  //   breakpoints: {
-  //     320: {
-  //       slidesPerView: 1,
-  //       spaceBetween: 20
-  //     },
-
-  //     1200: {
-  //       slidesPerView: 3,
-  //       spaceBetween: 20
-  //     }
-  //   }
-  // });
-
-  /**
-   * Animation on scroll
-   */
-  // window.addEventListener('load', () => {
-  //   AOS.init({
-  //     duration: 1000,
-  //     easing: 'ease-in-out',
-  //     once: true,
-  //     mirror: false
-  //   })
-  // });
-
-  /**
-   * Initiate Pure Counter 
-   */
   new PureCounter();
-
 })()
 
 // ! CUSTOM
@@ -368,24 +283,4 @@ function reloadCaptcha(event)
       $(".captcha span").html(data.captcha);
     }
   });
-}
-
-function detailGallery(event)
-{
-  event.preventDefault();
-  
-  let el  = $(event.target).closest('a')
-  let url = el.attr('href')
-  
-  if (url !== '') return window.open(url, '_blank')
-
-  let modal = $('#dynamicModal')
-  let img   = el.parent().parent().find('img').attr('src')
-  
-  modal.find('.modal-body').html(`
-    <img src="${img}" class="img-fluid" alt="preview" />
-  `)
-
-  dynamicModal = new bootstrap.Modal('#dynamicModal')
-  dynamicModal.show()
 }

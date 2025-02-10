@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 import Contact from "@/components/home/Contact";
 import Footer from "@/components/home/Footer";
-import Gallery from "@/components/home/Gallery";
+import Gallery from "@/components/home/galleries/Gallery";
 import Skill from "@/components/home/skills/Skills";
 import Header from "@/components/home/Header";
 import Hero from "@/components/home/Hero";
@@ -38,19 +38,6 @@ export default function Home() {
         <Gallery />
         <Blog />
         <Contact />
-
-        <div className="modal fade" id="dynamicModal" tabIndex={-1} aria-labelledby="dynamicModalLabel" aria-hidden="true" style={{  zIndex: 1050 }}>
-          <div className="modal-dialog modal-xl">
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div className="modal-body">
-                ...
-              </div>
-            </div>
-          </div>
-        </div>
       </main>
 
       <Footer />

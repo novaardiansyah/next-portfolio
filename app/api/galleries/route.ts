@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { apiFetch } from "@/lib/apiClient";
 export async function GET(req: NextRequest) {
   try {
-    const data = await apiFetch("skills");
+    const data = await apiFetch("galleries");
     return NextResponse.json(data);
   } catch (error) {
     error = error instanceof Error ? error.message : "An unknown error occurred"
