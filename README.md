@@ -6,7 +6,9 @@ Welcome to my latest project! This time, I’m excited to share my personal port
 
 For this reason, in this project, I decided to migrate all frontend functionalities from Laravel to Next.js while keeping Laravel as the backend. This project is open source, and I’ll be sharing all the source code in this repository so that it can serve as a reference for anyone interested in learning from it.
 
-However, please note that I do not provide an API or CMS backend for this project. If you plan to use it, you’ll need to create your own API/CMS backend. Additionally, I do not offer support for installation, so you’ll need to learn how to set it up on your own.
+However, please note that I ***do not provide*** an API or CMS backend for this project. If you plan to use it, you’ll need to create your own API/CMS backend. Additionally, I do not offer support for installation, so you’ll need to learn how to set it up on your own.
+
+*This project is only for personal use and not for commercial purposes.*
 
 ## Electrifying Tech Stack!⚡
 
@@ -27,6 +29,11 @@ Need to chat? Feel free to drop me a line via [Email](mailto:novaardiansyah78@gm
 ## Sneak Peek 🌟
 
 Get a glimpse of the app's enchanting world by exploring the current progress at [live demo](https://novaardiansyah.my.id/). Feast your eyes on these snapshots that showcase the app's dynamic essence.
+
+## Thanks To 🤝
+
+- [BootstrapMade.com](https://bootstrapmade.com/license/)
+- [Template Design](https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/)
 
 ## Project Status 🚀 
 
