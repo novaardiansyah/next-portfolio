@@ -4,7 +4,6 @@ import { Open_Sans } from "next/font/google";
 import "../public/plugins/bootstrap/css/bootstrap.min.css";
 import "../public/plugins/bootstrap-icons/bootstrap-icons.css";
 import "../public/plugins/boxicons/css/boxicons.min.css";
-import "../public/plugins/glightbox/css/glightbox.min.css";
 import "../public/plugins/swiper/swiper-bundle.min.css";
 import "../public/css/style.css";
 import BodyScripts from "@/components/BodyScripts";
