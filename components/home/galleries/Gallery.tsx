@@ -11,16 +11,26 @@ type Galleries = {
   tag: {
     id: number;
     name: string;
+    slug: string;
   }
 };
 
+type GalleryTags = {
+  id: number,
+  name: string;
+  slug: string
+}
+
 function Gallery() {
   const [galleries, setGalleries] = useState<Galleries[]>([]);
+  const [tags, setTags] = useState<GalleryTags[]>([]);
   const [loading, setLoading] = useState(true);
   
   const [modalImage, setModalImage] = useState("");
   const [modalDetail, setModalDetail] = useState("");
   const [show, setShow] = useState(false);
+
+  const [activeFilter, setActiveFilter] = useState("*");
 
   const handleClick = (image: string, url: string) => {
     setModalImage(image);
@@ -28,14 +38,24 @@ function Gallery() {
     setShow(true);
   };
 
+  const fetchData = async () => {
+    try {
+      const [tagsRes, galleriesRes] = await Promise.all([
+        fetch("/api/gallery_tags").then((res) => res.json()),
+        fetch("/api/galleries").then((res) => res.json()),
+      ]);
+  
+      setTags(tagsRes.data);
+      setGalleries(galleriesRes.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
   useEffect(() => {
-    fetch("/api/galleries")
-      .then((res) => res.json())
-      .then((res) => {
-        setGalleries(res.data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    fetchData();
   }, []);
 
   return (
@@ -49,7 +69,12 @@ function Gallery() {
         <div className="row" data-aos="fade-up">
           <div className="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter="*" className="filter-active">All</li>
+              <li className={activeFilter === '*' ? "filter-active" : ""} onClick={() => setActiveFilter('*')}>All</li>
+              { tags && tags.map((tag) => (
+                  <li key={tag.id} className={activeFilter === `${tag.slug}` ? "filter-active" : ""}
+                  onClick={() => setActiveFilter(`${tag.slug}`)}>{tag.name}</li>
+                ))
+              }
             </ul>
           </div>
         </div>
@@ -61,9 +86,13 @@ function Gallery() {
               ))
             ) : (
               <>
-                { galleries.map((gallery) => (
-                    <CardImage key={gallery.id} image={gallery.image} id={gallery.id} tag_slug={gallery.tag.name} url={gallery.url} onClick={handleClick} />
-                  ))
+                { galleries.map((gallery) => {
+                    if (activeFilter == '*' || gallery.tag.slug == activeFilter) {
+                      return (
+                        <CardImage key={gallery.id} image={gallery.image} id={gallery.id} tag_slug={gallery.tag.slug} url={gallery.url} onClick={handleClick} />
+                      )
+                    }
+                  })
                 }
               </>
             )
