@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import SkillProgress from './SkillProgress';
+import { Waypoint } from "react-waypoint"
 type Skill = {
   id: number;
   name: string;
@@ -37,6 +38,7 @@ function Skill() {
               ))
             ) : (
               <>
+                <Waypoint onEnter={() => setIsVisible(true)} />
                 { skills.map((skill) => (
                     <SkillProgress key={skill.id} name={skill.name} value={skill.percentage} isVisible={isVisible} />
                   ))
