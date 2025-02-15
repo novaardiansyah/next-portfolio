@@ -14,7 +14,7 @@ function Header() {
             <a href="https://www.instagram.com/novaardiansyah._/" className="instagram"><i className="bx bxl-instagram"></i></a>
             <a href="https://www.linkedin.com/in/novaardiansyah/" className="linkedin"><i className="bx bxl-linkedin"></i></a>
             <a href="https://github.com/novaardiansyah" className="github"><i className="bx bxl-github"></i></a>
-            <a href="{{ asset('cv/nova-ardiansyah-2023.pdf') }}" className="download-cv" download target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download CV"><i className="bx bx-download"></i></a>
+            <a href="/cv/nova-ardiansyah-2023.pdf" className="download-cv" download data-bs-toggle="tooltip" data-bs-placement="bottom" title="Download CV"><i className="bx bx-download"></i></a>
           </div>
         </div>
 

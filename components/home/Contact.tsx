@@ -54,6 +54,7 @@ function Contact() {
       setLoading(false)
       setToken("")
       setCaptchaKey((prev) => prev + 1);
+      setInvalidFields({});
     }
   }
 

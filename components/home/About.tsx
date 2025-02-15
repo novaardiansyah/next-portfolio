@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 function About() {
+  const ageInYears = Math.floor((new Date().getTime() - new Date(2001, 10, 11).getTime()) / (1000 * 60 * 60 * 24 * 365.25));
+  
   return (
     <section id="about" className="about">
       <div className="container">
@@ -24,17 +26,17 @@ function About() {
             <div className="row">
               <div className="col-lg-6">
                 <ul>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>11 November 2001</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Email:</strong> <a href="mailto:novaardiansyah78@gmail.com" className="text-dark">novaardiansyah78@gmail.com</a></li>
                   <li><i className="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>(+62) 895 0666 8480</span></li>
                   <li><i className="bi bi-chevron-right"></i> <strong>City:</strong> <span>Tangerang, Indonesia</span></li>
                 </ul>
               </div>
               <div className="col-lg-6">
                 <ul>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> 23</li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> {ageInYears}</li>
                   <li className="d-none"><i className="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>-</span></li>
                   <li><i className="bi bi-chevron-right"></i> <strong>Status:</strong> <span>Active Student</span></li>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Email:</strong> <a href="mailto:novaardiansyah78@gmail.com" className="text-dark">novaardiansyah78@gmail.com</a></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Freelance:</strong> Available</li>
                 </ul>
               </div>
             </div>
