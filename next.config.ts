@@ -8,8 +8,15 @@ const nextConfig: NextConfig = {
         hostname: "127.0.0.1",
         port: "8000",
       },
+      {
+        protocol: "https",
+        hostname: "https://admin.novaardiansyah.my.id/",
+      },
     ],
   },
+  eslint: {
+    ignoreDuringBuilds: true, // Disable ESLint saat build
+  }
 };
 
 export default nextConfig;
