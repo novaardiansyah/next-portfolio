@@ -1,7 +1,71 @@
-import React from 'react'
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import Turnstile from "react-turnstile";
 
 function Contact() {
-  const hasAutoForm = false;
+  const hasAutoForm = true;
+  const [token, setToken] = useState<string | null>(null)
+  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
+  const [invalidFields, setInvalidFields] = useState<Record<string, string[]>>({})
+  const [captchaKey, setCaptchaKey] = useState<number>(0);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setError("")
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setInvalidFields({});
+
+    if (!token) {
+      setError("Please complete the captcha before submitting.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/contact_messages", {
+        body: JSON.stringify({ ...formData, captcha_token: token }),
+        method: "POST",
+      }).then((res) => res.json())
+      
+      if (res?.errors) {
+        setInvalidFields(res.errors);
+        return;
+      }
+
+      if (res?.status == 200) {
+        setFormData({ name: "", email: "", subject: "", message: "" })
+        setSuccess(res?.message ?? "Message sent successfully");
+        return
+      } 
+      
+      throw new Error(res.message)
+    } catch (err: any) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+      setToken("")
+      setCaptchaKey((prev) => prev + 1);
+    }
+  }
+
+  useEffect(() => {
+    hasAutoForm && setFormData({
+      name: "John Doe",
+      email: "johndoe@example.com",
+      subject: "Hello",
+      message: "Hello, I'm interested in working with you."
+    })
+  }, []);
+
   return (
     <section id="contact" className="contact section-bg pb-5">
       <div className="container">
@@ -36,42 +100,53 @@ function Contact() {
           </div>
 
           <div className="col-lg-7 mt-4 mt-lg-0 d-flex align-items-stretch">
-            <form action="" method="post" role="form" className="php-email-form" id="formContactUs">
+            <form onSubmit={handleSubmit} className="php-email-form">
               <div className="row">
                 <div className="form-group col-md-6">
-                  <label htmlFor="name">Your Name</label>
-                  <input type="text" className="form-control" name="name" id="name" defaultValue={hasAutoForm ? 'John Doe' : ''} />
-                  <div className="invalid-feedback name"></div>
+                  <label htmlFor="name">Your Name<span className="text-danger">*</span></label>
+                  <input type="text" className="form-control" name="name" id="name" required onChange={handleChange} defaultValue={formData.name} />
+                  {invalidFields?.name && <div className="text-danger small">{invalidFields.name[0]}</div>}
                 </div>
                 <div className="form-group col-md-6">
-                  <label htmlFor="email">Your Email</label>
-                  <input type="email" className="form-control" name="email" id="email" defaultValue={hasAutoForm ? 'novaardiansyah817@gmail.com' : ''} />
-                  <div className="invalid-feedback email"></div>
+                  <label htmlFor="email">Your Email<span className="text-danger">*</span></label>
+                  <input type="email" className="form-control" name="email" id="email" required onChange={handleChange} defaultValue={formData.email} />
+                  {invalidFields?.email && <div className="text-danger small">{invalidFields.email[0]}</div>}
                 </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <input type="text" className="form-control" name="subject" id="subject" defaultValue={hasAutoForm ? 'Testing Contact Us' : ''} />
-                <div className="invalid-feedback subject"></div>
+                <label htmlFor="subject">Subject<span className="text-danger">*</span></label>
+                <input type="text" className="form-control" name="subject" id="subject" required onChange={handleChange} defaultValue={formData.subject} />
+                {invalidFields?.subject && <div className="text-danger small">{invalidFields.subject[0]}</div>}
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea className="form-control" name="message" id="message" rows={10} defaultValue={hasAutoForm ? 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, suscipit.' : ''}></textarea>
-                <div className="invalid-feedback message"></div>
+                <label htmlFor="message">Message<span className="text-danger">*</span></label>
+                <textarea className="form-control" name="message" id="message" rows={10} required onChange={handleChange} defaultValue={formData.message}></textarea>
+                {invalidFields?.message && <div className="text-danger small">{invalidFields.message[0]}</div>}
               </div>
 
-              <div className="my-3">
-                <div className="loading">Loading</div>
-                <div className="error-message"></div>
-                <div className="sent-message"></div>
-              </div>
-
-              <span id="alert-cant-contact"></span>
+              {error && <div className="alert alert-danger fade show" role="alert">{error}</div>}
 
               <div className="text-center">
-                <button type="submit">Send Message</button>
+                {success ? (
+                  <div className="alert alert-info fade show mb-0" role="alert">
+                    {success}
+                  </div>
+                ) : (
+                  <>
+                    <Turnstile
+                      sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY as string}
+                      onVerify={(token) => setToken(token)}
+                      key={captchaKey}
+                    />
+                    {invalidFields?.captcha_token && <div className="text-danger small mb-3">{invalidFields.captcha_token[0]}</div>}
+
+                    <button type="submit" disabled={loading} className="mt-2 btn btn-primary">
+                      {loading ? 'Sending Message...' : 'Send Message'}
+                    </button>
+                  </>
+                )}
               </div>
             </form>
           </div>
@@ -79,6 +154,4 @@ function Contact() {
       </div>
     </section>
   )
-}
-
-export default Contact
+}export default Contact

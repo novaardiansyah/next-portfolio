@@ -2,6 +2,7 @@ export async function apiFetch(endpoint: string, options: RequestInit = {}) {
   try {
     const res = await fetch(`${process.env.LARAVEL_API_URL}/${endpoint}`, {
       ...options,
+      body: options?.body && options.body instanceof FormData ? options.body : JSON.stringify(options.body),
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -10,13 +11,10 @@ export async function apiFetch(endpoint: string, options: RequestInit = {}) {
       },
     });
 
-    if (!res.ok) {
-      throw new Error(`Laravel API error: ${res.status} ${res.statusText}`);
-    }
+    let data = await res.json()
 
-    return await res.json();
+    return { status: res.status, ...data }
   } catch (error) {
-    console.error(error instanceof Error ? error.message : "An unknown error occurred");
-    throw new Error("Gagal fetch data dari server internal!");
+    throw new Error(error instanceof Error ? error.message : String(error))
   }
 }
