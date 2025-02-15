@@ -150,24 +150,24 @@ let dynamicModal = null
 $(document).ready(function () {
 })
 
-function calculateAge(birthDate) {
-  const today = new Date();
-  const birth = new Date(birthDate);
+// function calculateAge(birthDate) {
+//   const today = new Date();
+//   const birth = new Date(birthDate);
   
-  let age = today.getFullYear() - birth.getFullYear();
-  const monthDiff = today.getMonth() - birth.getMonth();
+//   let age = today.getFullYear() - birth.getFullYear();
+//   const monthDiff = today.getMonth() - birth.getMonth();
 
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
-    age--;
-  }
+//   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+//     age--;
+//   }
 
-  return age;
-}
+//   return age;
+// }
 
-const elAge     = document.getElementById('age');
-const birthDate = elAge.getAttribute('data-birthdate');
-const age       = calculateAge(birthDate);
-elAge.innerHTML = age;
+// const elAge     = document.getElementById('age');
+// const birthDate = elAge.getAttribute('data-birthdate');
+// const age       = calculateAge(birthDate);
+// elAge.innerHTML = age;
 
 // function send_message(event)
 // {

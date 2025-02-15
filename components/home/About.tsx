@@ -31,7 +31,7 @@ function About() {
               </div>
               <div className="col-lg-6">
                 <ul>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> <span id="age" data-birthdate="2001-11-11">-</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> 23</li>
                   <li className="d-none"><i className="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>-</span></li>
                   <li><i className="bi bi-chevron-right"></i> <strong>Status:</strong> <span>Active Student</span></li>
                   <li><i className="bi bi-chevron-right"></i> <strong>Email:</strong> <a href="mailto:novaardiansyah78@gmail.com" className="text-dark">novaardiansyah78@gmail.com</a></li>

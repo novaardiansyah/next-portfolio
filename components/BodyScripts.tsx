@@ -11,7 +11,7 @@ export default function BodyScripts() {
       <Script src="/plugins/typed.js/typed.umd.js" strategy="lazyOnload" />
       
       {/* Custom JS */}
-      <Script src="/js/main/index.js?v=1.2" strategy="lazyOnload" />
+      <Script src="/js/main/index.js?v=1.3" strategy="lazyOnload" />
     </>
   );
 }
