@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Turnstile from "react-turnstile";
 
 function Contact() {
-  const hasAutoForm = true;
+  const hasAutoForm = false;
   const [token, setToken] = useState<string | null>(null)
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" })
   const [loading, setLoading] = useState(false)
