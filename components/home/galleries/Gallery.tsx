@@ -80,7 +80,7 @@ function Gallery() {
         </div>
 
         <div className="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-          { loading ? (
+          { loading || !galleries ? (
               Array.from({ length: 6 }).map((_, index) => (
                 <CardImage key={index} image="no-image" id={0} tag_slug="all" url="default" onClick={handleClick} />
               ))

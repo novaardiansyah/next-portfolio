@@ -32,7 +32,7 @@ function Skill() {
         </div>
 
         <div className="row skills-content">
-          { loading ? (
+          { loading || !skills ? (
               Array.from({ length: 4 }).map((_, index) => (
                 <SkillProgress key={index} name="loading" value={0} isVisible={false} />
               ))

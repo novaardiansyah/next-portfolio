@@ -148,8 +148,6 @@
 // ! CUSTOM
 let dynamicModal = null
 $(document).ready(function () {
-  let form = $('#formContactUs')
-  form[0].reset()
 })
 
 function calculateAge(birthDate) {
@@ -171,85 +169,52 @@ const birthDate = elAge.getAttribute('data-birthdate');
 const age       = calculateAge(birthDate);
 elAge.innerHTML = age;
 
-function cantContact(e)
-{
-  e.preventDefault();
-  const elAlert = document.getElementById('alert-cant-contact');
+// function send_message(event)
+// {
+//   if (event) event.preventDefault()
 
-  elAlert.innerHTML = `
-    <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert-cant-contact">
-      <strong>Warning!</strong> For now, the contact form is not yet operational. Please feel free to contact me directly using the provided details.
-      <button type="button" class="btn-close btn-sm " data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  `;
-
-  return false;
-}
-
-function send_message(event)
-{
-  if (event) event.preventDefault()
-
-  let form     = $(event.target).closest('form')
-  let formData = new FormData(form[0])
-  let url      = form.attr('action')
+//   let form     = $(event.target).closest('form')
+//   let formData = new FormData(form[0])
+//   let url      = form.attr('action')
   
-  $.ajax({
-    url: url,
-    type: 'POST',
-    data: formData,
-    processData: false,
-    contentType: false,
-    beforeSend: function () {
-      $(event.target).prop('disabled', true).hide()
-      $(form).find('.loading').fadeIn(150)
-      $(form).find(`.sent-message, .error-message`).html('').hide()
-      $(form).find(`.invalid-feedback`).html('').hide()
-    },
-    success: function (callback) {
-      form[0].reset()
-      $(form).find('.sent-message').html(callback?.message).fadeIn(150)
-    },
-    error: function (xhr, status, error) {
-      if (xhr.status == 422) {
-        let errors = xhr.responseJSON.errors
+//   $.ajax({
+//     url: url,
+//     type: 'POST',
+//     data: formData,
+//     processData: false,
+//     contentType: false,
+//     beforeSend: function () {
+//       $(event.target).prop('disabled', true).hide()
+//       $(form).find('.loading').fadeIn(150)
+//       $(form).find(`.sent-message, .error-message`).html('').hide()
+//       $(form).find(`.invalid-feedback`).html('').hide()
+//     },
+//     success: function (callback) {
+//       form[0].reset()
+//       $(form).find('.sent-message').html(callback?.message).fadeIn(150)
+//     },
+//     error: function (xhr, status, error) {
+//       if (xhr.status == 422) {
+//         let errors = xhr.responseJSON.errors
 
-        Object.keys(errors).forEach(function (key) {
-          let error = errors[key]
+//         Object.keys(errors).forEach(function (key) {
+//           let error = errors[key]
 
-          if (key == 'alert') {
-            $(form).find('.error-message').html(error).fadeIn(150)
-          } else {
-            $(event.target).prop('disabled', false).show()
+//           if (key == 'alert') {
+//             $(form).find('.error-message').html(error).fadeIn(150)
+//           } else {
+//             $(event.target).prop('disabled', false).show()
 
-            if (error == 'validation.captcha') error = 'The captcha is invalid.'
+//             if (error == 'validation.captcha') error = 'The captcha is invalid.'
 
-            form.find(`.invalid-feedback.${key}`).html(error).show()
-          }
-        })
-      }
+//             form.find(`.invalid-feedback.${key}`).html(error).show()
+//           }
+//         })
+//       }
 
-      console.error('CLIENT_ERROR: ' + error)
-    },
-    complete: function () {
-      $(form).find('.loading').fadeOut(150)
-    }
-  })
-}
-
-function reloadCaptcha(event) 
-{
-  event.preventDefault();
-
-  let url = $(event.target).attr('data-url');
-
-  $.ajax({
-    type: 'GET',
-    url: url,
-    success: function (data) {
-      $('#captcha').val('');
-      $('.invalid-feedback.captcha').text('').hide()
-      $(".captcha span").html(data.captcha);
-    }
-  });
-}
+//       console.error('CLIENT_ERROR: ' + error)
+//     },
+//     complete: function () {
+//       $(form).find('.loading').fadeOut(150)
+//     }
+//   })

@@ -5,7 +5,6 @@ export async function GET(req: NextRequest) {
     const data = await apiFetch("gallery_tags");
     return NextResponse.json(data);
   } catch (error) {
-    error = error instanceof Error ? error.message : "An unknown error occurred"
-    return NextResponse.json({ status: false, error }, { status: 500 });
+    return NextResponse.json({ status: 500, message: 'Something went wrong!' }, { status: 500 });
   }
 }
