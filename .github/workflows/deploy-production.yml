@@ -24,13 +24,19 @@ jobs:
             git fetch origin
             git checkout production
             git pull origin production
-            sudo rm -rf node_modules
-            sudo rm -rf .next
-            sudo nvm use v22.16.0
-            sudo npm install --legacy-peer-deps
-            sudo npm run build
-            sudo npm run pm2:restart || sudo npm run pm2:start
-            sudo pm2 save
-            sudo pm2 startup
-            sudo pm2 status
+            rm -rf node_modules
+            rm -rf .next
+
+            export NVM_DIR="$HOME/.nvm"
+            source $NVM_DIR/nvm.sh
+
+            nvm install 22.16.0
+            nvm use 22.16.0
+
+            npm install --legacy-peer-deps
+            npm run build
+            npm run pm2:restart || npm run pm2:start
+            pm2 save
+            pm2 startup
+            pm2 status
             
