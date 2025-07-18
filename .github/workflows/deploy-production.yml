@@ -26,6 +26,13 @@ jobs:
             git pull origin production
             rm -rf node_modules
             rm -rf .next
+
+            export NVM_DIR="$HOME/.nvm"
+            source $NVM_DIR/nvm.sh
+
+            nvm install 22.16.0
+            nvm use 22.16.0
+
             npm install --legacy-peer-deps
             npm run build
             npm run pm2:restart || npm run pm2:start
