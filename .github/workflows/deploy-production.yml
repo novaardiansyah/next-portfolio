@@ -26,9 +26,10 @@ jobs:
             git pull origin production
             sudo rm -rf node_modules
             sudo rm -rf .next
+            sudo nvm use v22.16.0
             sudo npm install --legacy-peer-deps
             sudo npm run build
-            sudo npm run pm2:restart || npm run pm2:start
+            sudo npm run pm2:restart || sudo npm run pm2:start
             sudo pm2 save
             sudo pm2 startup
             sudo pm2 status
