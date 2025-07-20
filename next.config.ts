@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "admin.novaardiansyah.my.id",
+        hostname: "admin.novadev.my.id",
       },
     ],
   },

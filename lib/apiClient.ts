@@ -1,12 +1,15 @@
-export async function apiFetch(endpoint: string, options: RequestInit = {}) {
+export async function apiFetch(endpoint: string, options: RequestInit = {}, version: number = 1) {
   try {
-    const res = await fetch(`${process.env.LARAVEL_API_URL}/${endpoint}`, {
+    const apiURL = version === 2 ? process.env.LARAVEL_API_URL_V2 : process.env.LARAVEL_API_URL;
+    const apiKey = version === 2 ? process.env.LARAVEL_API_KEY_V2 : process.env.LARAVEL_API_KEY;
+
+    const res = await fetch(`${apiURL}/${endpoint}`, {
       ...options,
       body: options?.body && options.body instanceof FormData ? options.body : JSON.stringify(options.body),
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": `Bearer ${process.env.LARAVEL_API_KEY}`,
+        "Authorization": `Bearer ${apiKey}`,
         ...(options.headers || {}),
       },
     });

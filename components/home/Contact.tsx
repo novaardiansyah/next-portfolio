@@ -37,7 +37,7 @@ function Contact() {
       }).then((res) => res.json())
       
       if (res?.errors) {
-        setInvalidFields(res.errors);
+        setInvalidFields((prev) => res.errors);
         return;
       }
 
@@ -54,7 +54,6 @@ function Contact() {
       setLoading(false)
       setToken("")
       setCaptchaKey((prev) => prev + 1);
-      setInvalidFields({});
     }
   }
 
