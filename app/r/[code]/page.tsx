@@ -51,7 +51,7 @@ export default function Page({ params }: Props) {
           <h2 className="h4 fw-bold text-success mb-2">Redirecting…</h2>
           <div className="text-secondary mb-3">
             You are being redirected to the original URL.<br className="d-none d-md-inline" />
-            If you are not redirected automatically, please click the button below.
+            &nbsp;If you are not redirected automatically, please click the button below.
           </div>
           {
             !loading && (
@@ -63,7 +63,7 @@ export default function Page({ params }: Props) {
                 </div>
                 <a
                   href={data?.long_url || "#"}
-                  className="btn btn-success btn-lg rounded-pill px-4 fw-semibold shadow-sm"
+                  className="btn btn-success btn-md rounded-pill px-4 fw-semibold shadow-sm"
                 >
                   Let&apos;s go now
                 </a>
