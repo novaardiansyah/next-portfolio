@@ -39,8 +39,8 @@ export default function Page({ params }: Props) {
   }, [seconds, loading, data]);
 
   return (
-    <div className="d-flex align-items-center justify-content-center min-vh-100 bg-light">
-      <div className="w-100" style={{ maxWidth: 400 }}>
+    <div className="d-flex align-items-center justify-content-center min-vh-100 bg-light px-3">
+      <div className="w-100" style={{ maxWidth: 420 }}>
         <div className="card shadow-lg rounded-4 p-4 text-center animate-fade-in">
           {/* Spinner */}
           <div className="mb-4">
