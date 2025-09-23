@@ -1,7 +1,12 @@
 export async function apiFetch(endpoint: string, options: RequestInit = {}, version: number = 1) {
   try {
-    const apiURL = version === 2 ? process.env.LARAVEL_API_URL_V2 : process.env.LARAVEL_API_URL;
-    const apiKey = version === 2 ? process.env.LARAVEL_API_KEY_V2 : process.env.LARAVEL_API_KEY;
+    let apiURL = version === 2 ? process.env.LARAVEL_API_URL_V2 : process.env.LARAVEL_API_URL;
+    let apiKey = version === 2 ? process.env.LARAVEL_API_KEY_V2 : process.env.LARAVEL_API_KEY;
+
+    if (version === 3) {
+      apiURL = process.env.API_URL;
+      apiKey = process.env.API_KEY;
+    }
 
     const res = await fetch(`${apiURL}/${endpoint}`, {
       ...options,

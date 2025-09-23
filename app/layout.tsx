@@ -17,6 +17,9 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   title: "Nova Ardiansyah | Passionate Web Developer and Mobile Developer | Problem Solver & Tech Enthusiast",
   description: "Experienced Web Developer and Mobile Developer specializing in solving complex problems and creating innovative solutions.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
