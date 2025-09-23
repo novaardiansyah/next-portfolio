@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "admin.novadev.my.id",
       },
+      {
+        protocol: "https",
+        hostname: "personal-v4.novadev.my.id",
+      },
     ],
   },
   eslint: {
