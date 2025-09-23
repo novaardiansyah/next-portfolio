@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         port: "8000",
       },
       {
+        protocol: "http",
+        hostname: "100.108.9.46",
+        port: "8000",
+      },
+      {
         protocol: "https",
         hostname: "admin.novadev.my.id",
       },
